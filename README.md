@@ -1,0 +1,7 @@
+# A nontrivial critical window for RAF emergence in the binary polymer model
+
+Hordijk and Steel ([arXiv:1605.03919](https://arxiv.org/abs/1605.03919), Section 7, Eq. (21)) conjectured a zero-one threshold for RAF emergence at linear mean catalysis. In the uniform reversible binary-polymer model with split-position reaction identities and food consisting of monomers and dimers, a nontrivial limiting law is established. Each molecule independently catalyzes each reaction, with one catalysis coordinate shared by both directions. If the mean catalysis parameter f(n) satisfies f(n)/n → λ > 0, the probability of a reflexively autocatalytic and food-generated (RAF) set converges to L(λ). The function L is continuous and nondecreasing, with 0 < L(λ) ≤ 1 − exp(−36λ) < 1. Thus no finite positive threshold separates limiting RAF probability zero from one in this model.
+
+[Formal statement](Registry/P002/Challenge.lean) · [Proof](Registry/P002/Solution.lean) · [Companion manuscript](papers/P002/paper.pdf) · [Metadata](entries/P002/formalization.yaml) · [Claim correspondence](entries/P002/CLAIM-EVIDENCE.md)
+
+The selected theorem gives the limiting law and its continuity, monotonicity and strict probability bounds. Model definitions and the correspondence with the companion manuscript are set out in the claim correspondence. Lean and Mathlib versions are pinned in `lean-toolchain` and `lake-manifest.json`.

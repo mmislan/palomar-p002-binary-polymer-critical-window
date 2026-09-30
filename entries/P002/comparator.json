@@ -1,0 +1,12 @@
+{
+  "challenge_module": "Registry.P002.Challenge",
+  "solution_module": "Registry.P002.Solution",
+  "theorem_names": [
+    "HordijkSteelThreshold.palomar_critical_window_variable_intensity"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

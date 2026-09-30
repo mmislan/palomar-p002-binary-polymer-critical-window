@@ -1,0 +1,89 @@
+{
+  "version": "v0.4",
+  "project": {
+    "name": "A nontrivial critical window for RAF emergence in the binary polymer model",
+    "description": "Hordijk and Steel (https://arxiv.org/abs/1605.03919, Section 7, Eq. (21)) conjectured a zero-one threshold for RAF emergence at linear mean catalysis. In the uniform reversible binary-polymer model with split-position reaction identities and food consisting of monomers and dimers, a nontrivial limiting law is established. Each molecule independently catalyzes each reaction, with one catalysis coordinate shared by both directions. If the mean catalysis parameter f(n) satisfies f(n)/n → λ > 0, the probability of a reflexively autocatalytic and food-generated (RAF) set converges to L(λ). The function L is continuous and nondecreasing, with 0 < L(λ) ≤ 1 − exp(−36λ) < 1. Thus no finite positive threshold separates limiting RAF probability zero from one in this model.",
+    "authors": [
+      "Michael Mislan"
+    ],
+    "responsible_maintainers": [
+      "Michael Mislan"
+    ],
+    "license": "Apache-2.0"
+  },
+  "classification": {
+    "arxiv": [
+      "math.PR",
+      "q-bio.MN"
+    ],
+    "msc2020": [
+      "60K35",
+      "92E20",
+      "05C80"
+    ]
+  },
+  "sources": [
+    {
+      "title": "A nontrivial critical window for RAF emergence in the binary polymer model",
+      "authors": [
+        "Michael Mislan"
+      ],
+      "type": "paper",
+      "relationship": "formalizes",
+      "note": "Companion manuscript, Theorem 2.2 (critical-window law) and Corollary 2.3 (no finite step threshold); formal verification appendix. The selected declaration states Theorem 2.2's convergence, positivity, gateway ceiling, strict bound below one, continuity and monotonicity for an existential limit function; it does not state the identification with the infinite survival function, the eventual clamp identity or the limit at infinity.",
+      "location": "papers/P002/paper.pdf"
+    },
+    {
+      "title": "Autocatalytic sets in polymer networks with variable catalysis distributions",
+      "authors": [
+        "Wim Hordijk",
+        "Mike Steel"
+      ],
+      "type": "paper",
+      "relationship": "background",
+      "note": "Section 7 (Future work), Eq. (21), conjectures a finite positive threshold separating limiting RAF probability zero from one on the linear catalysis scale. Journal of Mathematical Chemistry 54(10) (2016), 1997–2021; arXiv:1605.03919v1. The model conventions used here are stated explicitly in CLAIM-EVIDENCE.md.",
+      "id": "doi:10.1007/s10910-016-0666-z",
+      "location": "https://arxiv.org/abs/1605.03919"
+    }
+  ],
+  "status": {
+    "scope": "Split-position reversible binary-polymer model with food X_2 and independent uniform catalysis at clamp(f(n)/R_n), one coordinate per molecule-reaction pair for both directions. For every real sequence with f(n)/n -> lambda > 0 the actual RAF-existence probability converges to L(lambda), where a single continuous nondecreasing L satisfies 0 < L(lambda) <= 1 - exp(-36 lambda) and L(lambda) < 1. No conditional premises. The explicit formula for L, the clamp identity, the limit as lambda -> infinity and the outer regimes are not in the selected statement.",
+    "sorry_count": 0,
+    "sorry_in_definitions": 0,
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "automation": {
+    "methods": [
+      {
+        "method": "agent",
+        "tool_setup": "AI-assisted source migration, metadata preparation and statement packaging using Codex.",
+        "framework": "Codex",
+        "models": []
+      }
+    ],
+    "notes": "AI-assisted development and submission preparation. Complete historical model identifiers are not available in the preserved records and are not inferred. Current source/statement review is agent-assisted; no independent human mathematical review is asserted."
+  },
+  "review": {
+    "status": "agent-reviewed",
+    "notes": "The selected statement has been compared with Theorem 2.2 and Corollary 2.3 of the companion manuscript and the conjecture in Hordijk–Steel, Section 7, Eq. (21). Model conventions and the selected scope are detailed in CLAIM-EVIDENCE.md. This is agent-assisted review, not independent human review."
+  },
+  "fidelity": {
+    "divergences": "Model conventions follow the companion manuscript: food is fixed as all words of length at most two, reactions are distinct for distinct split positions, and one catalysis coordinate serves ligation and cleavage. Intensity is encoded as rafProbability n (f n / n) with a total clamp min 1 (max 0 ...), which equals f(n)/R_n whenever it lies in [0,1]. Coordinates are sampled as two same-parameter Bernoulli families (food-gateway and other reactions), which is the same i.i.d. law. The limit is existential rather than named as S(1 - exp(-lambda)). The conjecture's step form is negated in this model only; the quotient-channel convention is treated separately in P036."
+  },
+  "alignment": {
+    "namespace": "HordijkSteelThreshold",
+    "statements": [
+      {
+        "source": "Theorem 2.2 (critical-window law); Corollary 2.3",
+        "lean": "HordijkSteelThreshold.palomar_critical_window_variable_intensity",
+        "module": "Registry.P002.Challenge",
+        "status": "partial",
+        "note": "States convergence for every f with f(n)/n -> lambda > 0 to an existential continuous monotone L with 0 < L <= 1 - exp(-36 lambda) and L < 1. Omits the survival-function formula, eventual clamp identity and lambda -> infinity limit."
+      }
+    ]
+  }
+}
