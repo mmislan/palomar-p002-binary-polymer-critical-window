@@ -62,8 +62,11 @@ def reactionRightLength {n : Nat} (r : Reaction n) : Nat :=
 
 theorem reaction_length_add {n : Nat} (r : Reaction n) :
     reactionLeftLength r + reactionRightLength r = reactionProductLength r := by
-  dsimp [reactionLeftLength, reactionRightLength, reactionProductLength]
-  omega
+  exact Eq.trans
+    (Nat.add_right_comm r.2.2.val 1 (r.1.val - r.2.2.val))
+    (congrArg (fun k : Nat => k + 1)
+      (Eq.trans (Nat.add_comm r.2.2.val (r.1.val - r.2.2.val))
+        (Nat.sub_add_cancel (Nat.le_of_lt r.2.2.isLt))))
 
 theorem reaction_left_pos {n : Nat} (r : Reaction n) :
     1 ≤ reactionLeftLength r := by simp [reactionLeftLength]
