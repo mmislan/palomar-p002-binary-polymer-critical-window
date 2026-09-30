@@ -69,17 +69,16 @@ theorem reaction_length_add {n : Nat} (r : Reaction n) :
         (Nat.sub_add_cancel (Nat.le_of_lt r.2.2.isLt))))
 
 theorem reaction_left_pos {n : Nat} (r : Reaction n) :
-    1 ≤ reactionLeftLength r := by simp [reactionLeftLength]
+    1 ≤ reactionLeftLength r := by
+  exact Nat.succ_pos r.2.2.val
 
 theorem reaction_right_pos {n : Nat} (r : Reaction n) :
     1 ≤ reactionRightLength r := by
-  dsimp [reactionRightLength]
-  omega
+  exact Nat.sub_pos_of_lt r.2.2.isLt
 
 theorem reaction_product_le {n : Nat} (r : Reaction n) :
     reactionProductLength r ≤ n := by
-  dsimp [reactionProductLength]
-  omega
+  exact r.1.isLt
 
 theorem reaction_pow_split {n : Nat} (r : Reaction n) :
     2 ^ (r.1.val + 1) =
