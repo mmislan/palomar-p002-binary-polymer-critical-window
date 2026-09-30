@@ -11,12 +11,19 @@ open RAF.Polymer
 /-- Length of an ambient binary polymer. -/
 def molLength {n : Nat} (x : Molecule n) : Nat := x.1.val + 1
 
+theorem moleculeOfCode_index_lt {n L : Nat} (hL : 1 ≤ L) (hLn : L ≤ n) :
+    L - 1 < n :=
+  Nat.lt_of_lt_of_le (Nat.sub_lt hL (Nat.zero_lt_succ 0)) hLn
+
+theorem moleculeOfCode_pow_eq {L : Nat} (hL : 1 ≤ L) :
+    2 ^ L = 2 ^ (L - 1 + 1) :=
+  congrArg (fun k : Nat => 2 ^ k) (Nat.sub_add_cancel hL).symm
+
 /-- A length-indexed word viewed as an ambient molecule. -/
 def moleculeOfCode {n L : Nat} (hL : 1 ≤ L) (hLn : L ≤ n)
     (x : Word L) : Molecule n :=
-  let hlt : L - 1 < n := by omega
-  let hidx : L - 1 + 1 = L := Nat.sub_add_cancel hL
-  ⟨⟨L - 1, hlt⟩, Fin.cast (congrArg (fun k => 2 ^ k) hidx.symm) x⟩
+  ⟨⟨L - 1, moleculeOfCode_index_lt hL hLn⟩,
+    Fin.cast (moleculeOfCode_pow_eq hL) x⟩
 
 /-- Concatenate the bit patterns of two molecules.  `finProdFinEquiv` is the
 standard mixed-radix bijection, here with radices `2^|u|` and `2^|v|`. -/
